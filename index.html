@@ -2,19 +2,18 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>Wrapper Football360 TV</title>
+  <title>IPTV</title>
 </head>
 <body>
   <iframe id="tvframe" src="https://tv.football360.ir/" style="width:100vw; height:100vh; border:none;"></iframe>
   <script src="tv-remote-nav.js"></script>
   <script>
-    // وقتی iframe بارگذاری شد، تزریق اسکریپت nav به داخلش
     const iframe = document.getElementById("tvframe");
     iframe.addEventListener("load", () => {
       try {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         const s = iframeDoc.createElement("script");
-        s.textContent = `(${tvRemoteNavCode})()`; // tvRemoteNavCode رشته‌ی تابع‌ JS که قبلاً ساختی
+        s.textContent = `(${tvRemoteNavCode})()`;
         iframeDoc.head.appendChild(s);
       } catch (err) {
         console.warn("Injection failed:", err);
@@ -23,3 +22,4 @@
   </script>
 </body>
 </html>
+
