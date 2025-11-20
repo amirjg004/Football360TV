@@ -1,32 +1,62 @@
 <!doctype html>
 <html lang="fa" dir="rtl" class="dark">
-  <head>
-    <base href="/Football360TV/" />
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap-rtl.min.css" />
-    <title>فوتبال ۳۶۰ | نسخه تلویزیون با ریموت</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Original assets -->
-    <script type="module" crossorigin src="./assets/index-CFFRJ7dk.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CXuvmg4O.css">
+  <!-- THIS MUST BE THE EXACT REPO NAME (case-sensitive!) -->
+  <base href="/Football360TV/" />
 
-    <!-- === THIS IS THE ONLY LINE WE ADD === -->
-    <script type="module" src="./assets/tv-navigation.js"></script>
-    <!-- ===================================== -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>فوتبال ۳۶۰ | نسخه تلویزیون با ریموت</title>
 
-    <!-- Rest unchanged -->
-    <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();if(location.protocol!="file:"){window.__vite_is_modern_browser=true}</script>
-    <!-- ... the rest of your original head/body ... -->
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- all your original scripts at the bottom -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- ... legacy scripts ... -->
-  </body>
+  <!-- Bootstrap CDN (original) -->
+  <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap-rtl.min.css" />
 
+  <!-- ALL PATHS ARE ABSOLUTE BECAUSE OF <base> -->
+  <script type="module" crossorigin src="/assets/index-CFFRJ7dk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CXuvmg4O.css">
+
+  <!-- Our TV navigation -->
+  <script type="module" src="/assets/tv-navigation.js"></script>
+
+  <!-- Vite required scripts (keep exactly like this) -->
+  <script type="module">
+    import.meta.url;import("_").catch(()=>1);(async function*(){})().next();
+    if(location.protocol!="file:"){window.__vite_is_modern_browser=true}
+  </script>
+  <script type="module">
+    !function(){if(window.__vite_is_modern_browser)return;
+    var e=document.getElementById("vite-legacy-polyfill"),
+    n=document.createElement("script");
+    n.src=e.src,n.onload=function(){
+      System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))
+    },document.body.appendChild(n)}();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script nomodule>!function(){
+    var e=document,t=e.createElement("script");
+    if(!("noModule"in t)&&"onbeforeload"in t){
+      var n=!1;
+      e.addEventListener("beforeload",function(e){
+        if(e.target===t)n=!0;
+        else if(!e.target.hasAttribute("nomodule")||!n)return;
+        e.preventDefault()
+      },!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()
+    }}();
+  </script>
+
+  <!-- Legacy files – also absolute because of <base> -->
+  <script nomodule crossorigin id="vite-legacy-polyfill" src="/assets/polyfills-legacy-BUWyO2Ew.js"></script>
+  <script nomodule crossorigin id="vite-legacy-entry" data-src="/assets/index-legacy-CoxdJDW_.js">
+    System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))
+  </script>
+</body>
 </html>
