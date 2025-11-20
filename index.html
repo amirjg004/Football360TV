@@ -1,78 +1,59 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-  <title>فوتبال ۳۶۰ - نسخه تلویزیون با ریموت</title>
-  <style>body,html{margin:0;padding:0;height:100%;background:#000;overflow:hidden}</style>
-</head>
-<body>
-<iframe id="f" src="https://tv.football360.ir/" style="border:none;width:100%;height:100%" allowfullscreen></iframe>
+<!doctype html>
+<html lang="fa" dir="rtl" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فوتبال ۳۶۰ | نسخه تلویزیون با ریموت</title>
 
-<script>
-// تزریق کامل کنترل ریموت به داخل سایت اصلی
-document.getElementById('f').onload = function() {
-  var doc = this.contentDocument;
-  var s = doc.createElement('script');
-  s.textContent = `
-    (function(){
-      // استایل فوکوس سبز درخشان
-      var st = document.createElement('style');
-      st.textContent = \`
-        * { cursor: none !important; }
-        button, a, [role="button"], .back, div[onclick], [jsaction], .channel-card { 
-          transition: all .2s !important; 
+    <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://netbarg.com/assets/site/css/bootstrap-rtl.min.css" />
+
+    <!-- Original Vite assets - relative paths so it works locally -->
+    <script type="module" crossorigin src="https://tv.football360.ir/assets/index-CFFRJ7dk.js"></script>
+    <link rel="stylesheet" crossorigin href="https://tv.football360.ir/assets/index-CXuvmg4O.css">
+
+    <!-- OUR TV NAVIGATION - THIS IS THE ONLY THING WE ADD -->
+    <script type="module" src="./assets/tv-navigation.js"></script>
+
+    <!-- Vite required stuff (keep exactly like this) -->
+    <script type="module">
+      import.meta.url;import("_").catch(()=>1);(async function*(){})().next();
+      if(location.protocol!="file:"){window.__vite_is_modern_browser=true}
+    </script>
+    <script type="module">
+      !function(){if(window.__vite_is_modern_browser)return;
+      var e=document.getElementById("vite-legacy-polyfill"),
+          n=document.createElement("script");
+      n.src=e.src,n.onload=function(){
+        System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))
+      },document.body.appendChild(n)}();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script nomodule>
+      !function(){
+        var e=document,t=e.createElement("script");
+        if(!("noModule"in t)&&"onbeforeload"in t){
+          var n=!1;
+          e.addEventListener("beforeload",function(e){
+            if(e.target===t)n=!0;
+            else if(!e.target.hasAttribute("nomodule")||!n)return;
+            e.preventDefault()
+          },!0),t.type="module",t.src=".",e.head.appendChild(t),t.remove()
         }
-        button:focus, a:focus, [role="button"]:focus, .back:focus, div[onclick]:focus {
-          outline: 8px solid lime !important;
-          outline-offset: 8px !important;
-          box-shadow: 0 0 50px lime !important;
-          transform: scale(1.15) !important;
-          z-index: 999999 !important;
-        }
-      \`;
-      document.head.appendChild(st);
+      }();
+    </script>
 
-      // همه چیز رو قابل فوکوس کن
-      function focusable() {
-        document.querySelectorAll('button, a, [role="button"], .back, div[onclick], [jsaction]')
-          .forEach(e => e.tabIndex = 0);
-      }
-      focusable();
-      new MutationObserver(focusable).observe(document.body, {childList:true,subtree:true});
-
-      // ناوبری با جهت‌نما
-      var cur = null;
-      function move(d) {
-        var all = [...document.querySelectorAll('button, a, [role="button"], .back, div[onclick]')];
-        if (!cur) { all[0]?.focus(); cur = all[0]; return; }
-        var r = cur.getBoundingClientRect();
-        var cx = r.left + r.width/2, cy = r.top + r.height/2;
-        var next = all.find(e => {
-          var er = e.getBoundingClientRect();
-          var dx = er.left + er.width/2 - cx;
-          var dy = er.top + er.height/2 - cy;
-          return (d==='left' && dx < -60) || (d==='right' && dx > 60) || 
-                 (d==='up' && dy < -60) || (d==='down' && dy > 60);
-        });
-        if (next) { next.focus(); cur = next; }
-      }
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft')  { move('left'); e.preventDefault(); }
-        if (e.key === 'ArrowRight') { move('right'); e.preventDefault(); }
-        if (e.key === 'ArrowUp')    { move('up'); e.preventDefault(); }
-        if (e.key === 'ArrowDown')  { move('down'); e.preventDefault(); }
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.activeElement?.click(); }
-        if (e.key === 'Backspace' || e.key === 'Escape') history.back();
-      });
-
-      // فوکوس خودکار اولین دکمه
-      setTimeout(() => document.querySelector('button, .back, [role="button"]')?.focus(), 3000);
-    })();
-  `;
-  doc.head.appendChild(s);
-};
-</script>
-</body>
+    <!-- Legacy files (if they exist in your assets folder) -->
+    <script nomodule crossorigin id="vite-legacy-polyfill" src="./assets/polyfills-legacy-BUWyO2Ew.js"></script>
+    <script nomodule crossorigin id="vite-legacy-entry" data-src="./assets/index-legacy-CoxdJDW_.js">
+      System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))
+    </script>
+  </body>
 </html>
